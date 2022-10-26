@@ -74,7 +74,7 @@ describe("Gilded Rose", function() {
     expect(items[0].quality).toBe(6);
   });
 
-  xit("The Quality of an item is never more than 50", function() {
+  it("The Quality of an item is never more than 50", function() {
     const gildedRose = new Shop([new Item("Aged Brie", 5, 49)]);
     const itemsDayOne = gildedRose.updateQuality();
     const itemsDayTwo = gildedRose.updateQuality();
@@ -83,7 +83,7 @@ describe("Gilded Rose", function() {
     expect(itemsDayTwo[0].quality).toBe(50);
   });
 
-  xit("Sulfuras never has to be sold or decreases in Quality", function() {
+  it("Sulfuras never has to be sold or decreases in Quality", function() {
     const gildedRose = new Shop([new Item("Sulfuras, Hand of Ragnaros", 5, 10)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("Sulfuras, Hand of Ragnaros");
@@ -91,7 +91,7 @@ describe("Gilded Rose", function() {
     expect(items[0].quality).toBe(10);
   });
 
-  xit("Backstage passes to a TAFKAL80ETC concert lose its quality past SellIn date", function() {
+  it("Backstage passes to a TAFKAL80ETC concert lose its quality past SellIn date", function() {
     const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 0, 20)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
@@ -99,7 +99,7 @@ describe("Gilded Rose", function() {
     expect(items[0].quality).toBe(0);
   });
 
-  xit("Backstage passes to a TAFKAL80ETC concert increases in Quality by 3 if the SellIn date is in less than 6 days", function() {
+  it("Backstage passes to a TAFKAL80ETC concert increases in Quality by 3 if the SellIn date is in less than 6 days", function() {
     const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 2, 0)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
@@ -107,7 +107,7 @@ describe("Gilded Rose", function() {
     expect(items[0].quality).toBe(3);
   });
 
-  xit("Backstage passes to a TAFKAL80ETC concert increases in Quality by 2 if the SellIn date is in less than 11 days", function() {
+  it("Backstage passes to a TAFKAL80ETC concert increases in Quality by 2 if the SellIn date is in less than 11 days", function() {
     const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 10, 0)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
@@ -115,7 +115,7 @@ describe("Gilded Rose", function() {
     expect(items[0].quality).toBe(2);
   });
 
-  xit("Backstage passes to a TAFKAL80ETC concert increases in Quality by 1 if the SellIn date is in more than 10 days", function() {
+  it("Backstage passes to a TAFKAL80ETC concert increases in Quality by 1 if the SellIn date is in more than 10 days", function() {
     const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 11, 0)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
@@ -123,7 +123,7 @@ describe("Gilded Rose", function() {
     expect(items[0].quality).toBe(1);
   });
 
-  xit("treats different objects within the shop independently of one another", function() {
+  it("treats different objects within the shop independently of one another", function() {
     const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 2, 0), new Item("foo", 5, 10)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
