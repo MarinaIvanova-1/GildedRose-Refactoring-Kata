@@ -34,12 +34,44 @@ describe("Gilded Rose", function() {
     expect(items[0].quality).toBe(8);
   });
 
-  xit("Aged Brie increases in Quality the older it gets", function() {
-    const gildedRose = new Shop([new Item("Aged Brie", 0, 0)]);
+  it("Aged Brie increases in Quality by 2 after SellIn date", function() {
+    const gildedRose = new Shop([new Item("Aged Brie", 0, 5)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("Aged Brie");
     expect(items[0].sellIn).toBe(-1);
-    expect(items[0].quality).toBe(2);
+    expect(items[0].quality).toBe(7);
+  });
+
+  it("Aged Brie increases in Quality by 2 after SellIn date", function() {
+    const gildedRose = new Shop([new Item("Aged Brie", -2, 5)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Aged Brie");
+    expect(items[0].sellIn).toBe(-3);
+    expect(items[0].quality).toBe(7);
+  });
+
+  it("Aged Brie Quality can't be more than 50", function() {
+    const gildedRose = new Shop([new Item("Aged Brie", -2, 50)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Aged Brie");
+    expect(items[0].sellIn).toBe(-3);
+    expect(items[0].quality).toBe(50);
+  });
+
+  it("Aged Brie increases in Quality the older it gets", function() {
+    const gildedRose = new Shop([new Item("Aged Brie", 5, 5)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Aged Brie");
+    expect(items[0].sellIn).toBe(4);
+    expect(items[0].quality).toBe(6);
+  });
+
+  it("Aged Brie increases in Quality the older it gets", function() {
+    const gildedRose = new Shop([new Item("Aged Brie", 10, 5)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Aged Brie");
+    expect(items[0].sellIn).toBe(9);
+    expect(items[0].quality).toBe(6);
   });
 
   xit("The Quality of an item is never more than 50", function() {
