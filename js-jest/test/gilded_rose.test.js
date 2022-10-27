@@ -133,30 +133,21 @@ describe("Gilded Rose", function() {
     expect(items[1].sellIn).toBe(4);
     expect(items[1].quality).toBe(9);
   });
+
+  it('“Conjured” items degrade in Quality twice as fast as normal items"', () => {
+    const gildedRose = new Shop([new Item("Conjured", 10, 20)])
+    const items = gildedRose.updateQuality();
+    expect(items[0].sellIn).toBe(9);
+    expect(items[0].quality).toBe(18);
+  })
+
+  it('“Conjured” items degrade in Quality twice as fast as normal items"', () => {
+    const gildedRose = new Shop([new Item("Conjured", 0, 20)])
+    const items = gildedRose.updateQuality();
+    expect(items[0].sellIn).toBe(-1);
+    expect(items[0].quality).toBe(16);
+  })
 });
 
 
 
-
-// class Protocol {  
-//   // accept a list of method-names  
-//   constructor(...methods) {  
-//     this.implementations = {};  
-//     // and create a method for each  
-//     methods.forEach(method => {  
-//       // that will dispatch to an implementation stored on the type of the first argument  
-//       this\[method\] = (type, ...args) => {  
-//         // with the convention that an object's type is given by its constructor  
-//         return this.implementations\[type.constructor\]\[method\](type, ...args);  
-//       }   
-//     });  
-//   }  
-//   // register implementations for a type  
-//   extendTo(typeConstructor, implementation) {  
-//     const typed = this.implementations\[typeConstructor\] = {};  
-//     Object.keys(implementation)  
-//       .forEach(method => {  
-//         typed\[method\] = implementation\[method\];  
-//       });  
-//   }  
-// }
